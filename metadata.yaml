@@ -1,7 +1,7 @@
 homepage: "https://www.userleap.com"
 documentation: "https://docs.userleap.com"
 versions:
-  - sha:
+  - sha: 567c3dcfbc1f89139747fe3fd13bfd3264e0100f
     changeNotes: Fix queueing for dynamic tracking.
   - sha: 13e0f74439edd519152230397743c5b9a817ee26
     changeNotes: Initial release.
