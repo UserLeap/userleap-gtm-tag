@@ -243,7 +243,9 @@ const onSetupFailure = () => {
 };
 
 const setup = (onSuccess, onFailure) => {
-  const UserLeap = function(){UserLeap._queue.push(arguments);};
+  setInWindow('UserLeap', function(){
+    callInWindow('UserLeap._queue.push', arguments);
+  });
   setInWindow('UserLeap', UserLeap);
   setInWindow('UserLeap.appId', data.envId);
   setInWindow('UserLeap._queue', []);
@@ -518,6 +520,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 5/29/2020, 4:42:42 PM
+Created on 6/15/2020, 6:56:03 PM
 
 
