@@ -246,14 +246,13 @@ const setup = (onSuccess, onFailure) => {
   setInWindow('UserLeap', function(){
     callInWindow('UserLeap._queue.push', arguments);
   });
-  setInWindow('UserLeap', UserLeap);
   setInWindow('UserLeap.appId', data.envId);
   setInWindow('UserLeap._queue', []);
   injectScript('https://cdn.userleap.com/shim.js?id='+encodeUriComponent(data.envId), onSetupSuccess, onSetupFailure);
 };
 
 const UserLeap = copyFromWindow('UserLeap');
-if (UserLeap) {
+if (UserLeap && UserLeap.appId) {
   action();
 } else {
   setup();
@@ -520,6 +519,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 6/15/2020, 6:56:03 PM
+Created on 7/1/2020, 7:49:36 PM
 
 
