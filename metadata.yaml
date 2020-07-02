@@ -1,7 +1,7 @@
 homepage: "https://www.userleap.com"
 documentation: "https://docs.userleap.com"
 versions:
-  - sha:
+  - sha: 62c89085162c73fd3f36f951616f71add621212d
     changeNotes: Resolve loading in mixed environment
   - sha: 567c3dcfbc1f89139747fe3fd13bfd3264e0100f
     changeNotes: Fix queueing for dynamic tracking.
