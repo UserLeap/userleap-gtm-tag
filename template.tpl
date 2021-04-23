@@ -1,4 +1,4 @@
-___TERMS_OF_SERVICE___
+﻿___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -243,12 +243,12 @@ const action = () => {
     callInWindow('UserLeap._queue.push', ['setEmail', data.email]);
     logToConsole('Email', data.email);
   }
+  data.gtmOnSuccess();
 };
 
 const onSetupSuccess = () => {
   logToConsole('UserLeap: Script setup success.');
   action();
-  data.gtmOnSuccess();
 };
 
 const onSetupFailure = () => {
@@ -573,6 +573,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 9/3/2020, 5:38:33 PM
+Created on 4/23/2021, 2:43:34 PM
 
 
