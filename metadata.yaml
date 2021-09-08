@@ -1,6 +1,8 @@
 homepage: "https://www.userleap.com"
 documentation: "https://docs.userleap.com"
 versions:
+  - sha: e49e3fae732eb03302f0b39db6c6952c47554fa4
+    changeNotes: Use new Sprig namespace, add gtm attribution
   - sha: 8007eb383c9e2b2649229d7e88f2d6bc5bff7a4e
     changeNotes: Correctly call data.gtmOnSuccess() at the end of action()
   - sha: 7503abd44e19559991a69479a6e54e16ad391cd0
