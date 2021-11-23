@@ -210,6 +210,12 @@ ___TEMPLATE_PARAMETERS___
     "name": "debugMode",
     "checkboxText": "debugMode",
     "simpleValueType": true
+  },
+  {
+    "type": "CHECKBOX",
+    "name": "skipInstallation",
+    "checkboxText": "Skip installation via GTM (for self-hosted installations)",
+    "simpleValueType": true
   }
 ]
 
@@ -268,8 +274,11 @@ const setup = (onSuccess, onFailure) => {
 const Sprig = copyFromWindow('Sprig');
 if (Sprig && Sprig.appId) {
   action();
-} else {
+} else if (!data.skipInstallation) {
   setup();
+} else {
+  logToConsole('Sprig: Invoked script before separate installation completed.');
+  data.gtmOnFailure();
 }
 
 
@@ -611,6 +620,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 9/7/2021, 2:27:33 PM
+Created on 11/23/2021, 1:32:46 PM
 
 
