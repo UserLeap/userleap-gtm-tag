@@ -76,6 +76,10 @@ ___TEMPLATE_PARAMETERS___
             "displayValue": "User ID"
           },
           {
+            "value": "Logout User",
+            "displayValue": "Logout User"
+          },
+          {
             "value": "Attribute",
             "displayValue": "User Attribute"
           },
@@ -240,6 +244,9 @@ const action = () => {
   } else if (data.actionDropdown === 'User ID') {
     callInWindow('Sprig._queue.push', ['setUserId', data.userId]);
     logToConsole('User ID', data.userId);
+  } else if (data.actionDropdown === 'Logout User') {
+    callInWindow('Sprig._queue.push', ['logoutUser']);
+    logToConsole('Logout User');
   } else if (data.actionDropdown === 'Install') {
     // no-op
     logToConsole('Install', getUrl('path'));
