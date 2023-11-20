@@ -1,6 +1,8 @@
 homepage: "https://www.userleap.com"
 documentation: "https://docs.userleap.com"
 versions:
+  - sha: 
+    changeNotes: Added event properties support
   - sha: e0e7c6ec30372d5a6e959e83fa4a519397faf170
     changeNotes: Added logoutUser to actions
   - sha: 04dd9045604234580d0d69bddc60464acc2a594c
