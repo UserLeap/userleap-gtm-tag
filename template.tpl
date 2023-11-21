@@ -76,10 +76,6 @@ ___TEMPLATE_PARAMETERS___
             "displayValue": "User ID"
           },
           {
-            "value": "Logout User",
-            "displayValue": "Logout User"
-          },
-          {
             "value": "Attribute",
             "displayValue": "User Attribute"
           },
@@ -90,6 +86,10 @@ ___TEMPLATE_PARAMETERS___
           {
             "value": "Event",
             "displayValue": "Event"
+          },
+          {
+            "value": "Logout User",
+            "displayValue": "Logout User"
           }
         ],
         "simpleValueType": true
@@ -142,11 +142,39 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "TEXT",
         "name": "eventName",
-        "displayName": "",
+        "displayName": "Event Name",
         "simpleValueType": true,
         "valueValidators": [
           {
             "type": "NON_EMPTY"
+          }
+        ]
+      },
+      {
+        "type": "GROUP",
+        "name": "eventPropertiesGroup",
+        "displayName": "Event Properties (Optional)",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
+          {
+            "type": "SIMPLE_TABLE",
+            "name": "eventProperties",
+            "simpleTableColumns": [
+              {
+                "defaultValue": "",
+                "displayName": "Property Name",
+                "name": "propertyName",
+                "type": "TEXT"
+              },
+              {
+                "defaultValue": "",
+                "displayName": "Property Value",
+                "name": "propertyValue",
+                "type": "TEXT"
+              }
+            ],
+            "newRowButtonText": "Add Event Property",
+            "valueValidators": []
           }
         ]
       }
@@ -236,8 +264,16 @@ const getUrl = require('getUrl');
 
 const action = () => {
   if (data.actionDropdown === 'Event') {
-    callInWindow('Sprig._queue.push', ['track', data.eventName]);
+    var eventProperties;
+    if (data.eventProperties) {
+      eventProperties = data.eventProperties.reduce(function(result, item) {
+	    result[item.propertyName] = item.propertyValue;
+	    return result;
+      }, {});
+    } 
+    callInWindow('Sprig._queue.push', ['track', data.eventName, eventProperties]);
     logToConsole('Event', data.eventName);
+    logToConsole('Event Properties', eventProperties);
   } else if (data.actionDropdown === 'Attribute') {
     callInWindow('Sprig._queue.push', ['setAttribute', data.attributeKey, data.attributeValue]);
     logToConsole('Attribute', data.attributeKey, data.attributeValue);
@@ -307,6 +343,9 @@ ___WEB_PERMISSIONS___
           }
         }
       ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
     },
     "isRequired": true
   },
@@ -614,6 +653,9 @@ ___WEB_PERMISSIONS___
           }
         }
       ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
     },
     "isRequired": true
   }
