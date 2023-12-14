@@ -90,6 +90,10 @@ ___TEMPLATE_PARAMETERS___
           {
             "value": "Logout User",
             "displayValue": "Logout User"
+          },
+          {
+            "value": "Dismiss Active Survey",
+            "displayValue": "Dismiss Active Survey"
           }
         ],
         "simpleValueType": true
@@ -272,23 +276,46 @@ const action = () => {
       }, {});
     } 
     callInWindow('Sprig._queue.push', ['track', data.eventName, eventProperties]);
-    logToConsole('Event', data.eventName);
-    logToConsole('Event Properties', eventProperties);
+    
+    if (data.debugMode) {
+      logToConsole('Sprig: Event tracked: ', data.eventName);
+      logToConsole('Sprig: Event Properties: ', eventProperties);
+    }
   } else if (data.actionDropdown === 'Attribute') {
     callInWindow('Sprig._queue.push', ['setAttribute', data.attributeKey, data.attributeValue]);
-    logToConsole('Attribute', data.attributeKey, data.attributeValue);
+    
+    if (data.debugMode) {
+      logToConsole('Sprig: Attribute sent: ', data.attributeKey, data.attributeValue);
+    }
   } else if (data.actionDropdown === 'User ID') {
     callInWindow('Sprig._queue.push', ['setUserId', data.userId]);
-    logToConsole('User ID', data.userId);
+    
+    if (data.debugMode) {
+      logToConsole('Sprig: User ID set: ', data.userId);
+    }
   } else if (data.actionDropdown === 'Logout User') {
     callInWindow('Sprig._queue.push', ['logoutUser']);
-    logToConsole('Logout User');
+    
+    if (data.debugMode) {
+      logToConsole('Sprig: Logout User');
+    }
   } else if (data.actionDropdown === 'Install') {
     // no-op
-    logToConsole('Install', getUrl('path'));
+    if (data.debugMode) {
+      logToConsole('Sprig: Install', getUrl('path'));
+    }
   } else if (data.actionDropdown === 'Email') {
     callInWindow('Sprig._queue.push', ['setEmail', data.email]);
-    logToConsole('Email', data.email);
+    
+    if (data.debugMode) {
+      logToConsole('Sprig: Email set: ', data.email);
+    }
+  } else if (data.actionDropdown == 'Dismiss Active Survey') {
+    callInWindow('Sprig._queue.push', ['dismissActiveSurvey']);
+    
+    if (data.debugMode) {
+      logToConsole('Sprig: Dismissed Active Survey');
+    }
   }
   data.gtmOnSuccess();
 };
