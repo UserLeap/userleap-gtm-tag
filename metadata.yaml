@@ -1,7 +1,7 @@
 homepage: "https://www.userleap.com"
 documentation: "https://docs.userleap.com"
 versions:
-  - sha: 
+  - sha: c867637bd7cd9e71061fc751f6691eaa737abb48
     changeNotes: Added dismissActiveSurvey and moved logging behind debugMode
   - sha: 7f9043f11a186cfb12a322ca1c128a995282d54c
     changeNotes: Added event properties support
